@@ -6367,7 +6367,9 @@ static int fg_gen4_probe(struct platform_device *pdev)
 	/* Keep MEM_ATTN_IRQ disabled until we require it */
 	vote(chip->mem_attn_irq_en_votable, MEM_ATTN_IRQ_VOTER, false, 0);
 
+#ifdef CONFIG_DEBUG_FS
 	fg_debugfs_create(fg);
+#endif
 
 	rc = fg_get_battery_voltage(fg, &volt_uv);
 	if (!rc)
