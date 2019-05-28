@@ -1904,7 +1904,7 @@ static void msm_geni_serial_handle_isr(struct uart_port *uport,
 	unsigned int dma;
 	unsigned int dma_tx_status;
 	unsigned int dma_rx_status;
-	unsigned int m_irq_en;
+	unsigned int m_irq_en = 0;
 	unsigned int geni_status;
 	struct msm_geni_serial_port *msm_port = GET_DEV_PORT(uport);
 	struct tty_port *tport = &uport->state->port;
