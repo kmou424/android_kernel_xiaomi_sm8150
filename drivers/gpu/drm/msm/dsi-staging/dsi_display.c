@@ -71,6 +71,8 @@ struct dsi_display *get_primary_display(void)
 	return primary_display;
 }
 EXPORT_SYMBOL(get_primary_display);
+static unsigned int timing_override;
+module_param(timing_override, uint, 0444);
 
 static int dsi_display_write_panel(struct dsi_display *display,struct dsi_panel_cmd_set *cmd_sets);
 
@@ -6613,7 +6615,14 @@ int dsi_display_get_modes(struct dsi_display *display,
 
 	dyn_clk_caps = &(display->panel->dyn_clk_caps);
 
-	timing_mode_count = display->panel->num_timing_nodes;
+	num_dfps_rates = !dfps_caps.dfps_support ? 1 : dfps_caps.dfps_list_len;
+
+	panel_mode_count = display->panel->num_timing_nodes;
+	if (timing_override >= panel_mode_count) {
+		pr_warn("[%s] ignoring invalid cmdline timing override %d\n",
+			display->name, timing_override);
+		timing_override = 0;
+	}
 
 	for (mode_idx = 0; mode_idx < timing_mode_count; mode_idx++) {
 		struct dsi_display_mode display_mode;
@@ -6622,7 +6631,10 @@ int dsi_display_get_modes(struct dsi_display *display,
 		if (display->cmdline_timing == mode_idx)
 			topology_override = display->cmdline_topology;
 
-		memset(&display_mode, 0, sizeof(display_mode));
+		if (mode_idx != timing_override)
+			continue;
+
+		memset(&panel_mode, 0, sizeof(panel_mode));
 
 		rc = dsi_panel_get_mode(display->panel, mode_idx,
 						&display_mode,
