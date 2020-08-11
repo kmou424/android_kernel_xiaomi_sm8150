@@ -795,7 +795,7 @@ int sde_connector_update_hbm(struct sde_connector *c_conn)
 				/* notify brightness clone bl event */
 				sysfs_notify(&c_conn->bl_device->dev.kobj, NULL, "brightness_clone");
 
-				dsi_display->panel->dc_enable = true;
+
 				pr_debug("fod restore DC\n");
 			}
 			dsi_display->panel->fod_dimlayer_hbm_enabled = false;
