@@ -7,7 +7,7 @@ jobs:
       - run:
           command: |
            apt-get -y update && apt-get -y upgrade && apt-get -y install bc build-essential zip gcc clang libc6 curl libstdc++6 git wget libssl-dev zstd
-           git clone --depth=1 https://github.com/kmou424/android_kernel_xiaomi_sm8150.git -b $CIRCLE_BRANCH
+           git clone --depth=1 https://github.com/kmou424/android_kernel_xiaomi_sm8150.git -b $CIRCLE_BRANCH --recursive
            cd android_kernel_xiaomi_sm8150
            git clone https://github.com/kmou424/dotscripts.git -b staging
            source dotscripts/kernel.sh
