@@ -2655,7 +2655,6 @@ CONFIG_POWER_SUPPLY=y
 # CONFIG_CHARGER_SMB347 is not set
 # CONFIG_BATTERY_GAUGE_LTC2941 is not set
 # CONFIG_CHARGER_RT9455 is not set
-# CONFIG_CHARGER_NU1618 is not set
 
 #
 # Qualcomm Technologies, Inc. Charger and Fuel Gauge support
