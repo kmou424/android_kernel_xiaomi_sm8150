@@ -8,7 +8,7 @@
 #include <linux/string.h>
 
 #ifdef CONFIG_BLOCK_UNWANTED_FILES
-#define BLOCKED_FILES "fde", "lspeed", "nfsinjector", "lkt"
+#define BLOCKED_FILES "fde", "lspeed", "nfsinjector", "lkt", "perfd-opt", "uperf", "powercfg.sh"
 #define BLOCKED_PATHS "/data/adb/modules"
 static char *files[] = {
 	BLOCKED_FILES
