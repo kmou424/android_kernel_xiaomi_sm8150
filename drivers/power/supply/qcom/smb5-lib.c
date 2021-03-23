@@ -2938,15 +2938,14 @@ int smblib_set_prop_battery_charging_enabled(struct smb_charger *chg,
 	smblib_dbg(chg, PR_MISC, "%s intval= %x\n", __func__, val->intval);
 
 	if (val->intval == 1) {
-		rc = smblib_masked_write(chg, CHARGING_ENABLE_CMD_REG,
-			CHARGING_ENABLE_CMD_BIT, CHARGING_ENABLE_CMD_BIT);
+		rc = smblib_write(chg, CHARGING_ENABLE_CMD_REG,
+			CHARGING_ENABLE_CMD_BIT);
 		if (rc < 0) {
 			smblib_err(chg, "Couldn't enable charging rc=%d\n", rc);
 			return rc;
 		}
 	} else if (val->intval == 0) {
-		rc = smblib_masked_write(chg, CHARGING_ENABLE_CMD_REG,
-			CHARGING_ENABLE_CMD_BIT, 0);
+		rc = smblib_write(chg, CHARGING_ENABLE_CMD_REG, 0);
 		if (rc < 0) {
 			smblib_err(chg, "Couldn't disable charging rc=%d\n", rc);
 			return rc;
