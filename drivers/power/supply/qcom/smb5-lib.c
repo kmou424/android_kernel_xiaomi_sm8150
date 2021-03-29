@@ -2587,7 +2587,7 @@ int smblib_set_prop_batt_status(struct smb_charger *chg,
 #define ADAPTER_ZIMI_CAR_POWER    0x0b
 
 #ifdef CONFIG_THERMAL
-unsigned int skip_therm = 0;
+unsigned int skip_therm = 1;
 module_param(skip_therm, uint, S_IWUSR | S_IRUGO);
 
 static int smblib_dc_therm_charging(struct smb_charger *chg,
