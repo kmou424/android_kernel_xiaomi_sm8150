@@ -1,4 +1,4 @@
-VERSION_NUMBER=0.6.7
+VERSION_NUMBER=0.6.8
 
 if [ -z "$KERNEL_RELESE" ]
 then
